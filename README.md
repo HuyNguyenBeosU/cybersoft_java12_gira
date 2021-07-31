@@ -1,3 +1,4 @@
 # cybersoft_java12_gira
-##  Javabackend - java21
- Gira Application for education
+##  Gira Application fo education
+
+gira for java12
