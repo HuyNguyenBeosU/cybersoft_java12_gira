@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,6 +26,17 @@ public class Role extends BaseEntity {
 	
 	private String description;
 	
+	@ManyToMany(mappedBy ="roles")
+	private Set<Group> groups= new HashSet<>();
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name="gira_role_program",
+				joinColumns = @JoinColumn(name="role_id"),
+				inverseJoinColumns = @JoinColumn(name="program_id")
+	)
+	private Set<Program> programs = new HashSet<>();
+	
+	/*getter setter*/
 	public String getName() {
 		return name;
 	}
@@ -59,13 +69,4 @@ public class Role extends BaseEntity {
 		this.programs = programs;
 	}
 
-	@ManyToMany(mappedBy ="roles")
-	private Set<Group> groups= new HashSet<>();
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name="gira_role_program",
-				joinColumns = @JoinColumn(name="role_id"),
-				inverseJoinColumns = @JoinColumn(name="program_id")
-	)
-	private Set<Program> programs = new HashSet<>();
 }

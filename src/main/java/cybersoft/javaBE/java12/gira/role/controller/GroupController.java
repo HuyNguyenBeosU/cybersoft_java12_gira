@@ -1,6 +1,5 @@
 package cybersoft.javaBE.java12.gira.role.controller;
 
-	
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,34 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.javaBE.java12.gira.common.ResponseHandler;
-import cybersoft.javaBE.java12.gira.role.dto.CreateRoleDto;
-import cybersoft.javaBE.java12.gira.role.entity.Role;
-import cybersoft.javaBE.java12.gira.role.service.itf.RoleService;
+import cybersoft.javaBE.java12.gira.role.dto.CreateGroupDto;
+import cybersoft.javaBE.java12.gira.role.entity.Group;
+import cybersoft.javaBE.java12.gira.role.service.itf.GroupService;
 
 @RestController
-@RequestMapping("/api/role")
-public class RoleController {
-	private RoleService service;
+@RequestMapping("/api/group")
+public class GroupController {
+	private GroupService service;
 	
-	public RoleController(RoleService roleService) {
-		service = roleService;
+	public GroupController(GroupService groupService) {
+		service = groupService;
 	}
 	
-	
-	@GetMapping
-	public Object findAllRole() {
-		List<Role> roles = service.findAll();
-		
-		return ResponseHandler.getResponse(roles, HttpStatus.OK);
+	@GetMapping("")
+	public Object findAllGroup() {
+		List<Group> groups = service.findAll();
+		return ResponseHandler.getResponse(groups, HttpStatus.OK);
 	}
 	
 	@PostMapping
-	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
+	public Object saveGroup(@Valid @RequestBody CreateGroupDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
 			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
 		}
-		Role addedRole = service.addNewRole(dto);
+		Group addedGroup = service.addNewGroup(dto);
 		
-		return ResponseHandler.getResponse(addedRole, HttpStatus.CREATED);
+		return ResponseHandler.getResponse(addedGroup, HttpStatus.CREATED);
 	}
+
 }
