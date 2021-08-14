@@ -7,7 +7,7 @@ public class CreateRoleDto {
 	@NotBlank(message = "{role.name.not-blank}")
 	@Size(min = 3, max = 50, message = "{role.name.size}")
 	private String name;
-	@NotBlank
+	
 	private String description;
 	/*getter setter */
 	public String getName() {

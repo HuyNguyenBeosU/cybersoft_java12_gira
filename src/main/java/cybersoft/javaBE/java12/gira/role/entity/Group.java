@@ -21,7 +21,7 @@ import cybersoft.javaBE.java12.gira.common.entity.BaseEntity;
 public class Group extends BaseEntity {
 	@NotNull
 	@Column(unique = true)
-	@Size(min = 3, max = 50)
+	@Size(min = 3, max = 50, message = "{group.name.size}")
 	private String name;
 	
 	private String description;

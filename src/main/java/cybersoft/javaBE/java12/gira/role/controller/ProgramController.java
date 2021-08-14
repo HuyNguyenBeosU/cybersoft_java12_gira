@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.javaBE.java12.gira.common.ResponseHandler;
 import cybersoft.javaBE.java12.gira.role.dto.CreateProgramDto;
+import cybersoft.javaBE.java12.gira.role.dto.ProgramDto;
 import cybersoft.javaBE.java12.gira.role.entity.Program;
 import cybersoft.javaBE.java12.gira.role.service.itf.ProgramService;
 
@@ -23,13 +24,14 @@ import cybersoft.javaBE.java12.gira.role.service.itf.ProgramService;
 public class ProgramController {
 	private ProgramService service;
 	
+	//constructor inject
 	public ProgramController(ProgramService programService) {
 		service = programService;
 	}
 	
 	@GetMapping
 	public Object findAllProgram() {
-		List<Program> programs = service.findAll();
+		List<ProgramDto> programs = service.findAll();
 		return ResponseHandler.getResponse(programs, HttpStatus.OK);
 	}
 	
@@ -39,6 +41,7 @@ public class ProgramController {
 			return new ResponseEntity<>(errors.getAllErrors(),HttpStatus.BAD_REQUEST);
 		}
 		Program addedProgram = service.addNewProgram(dto);
+		
 		return ResponseHandler.getResponse(addedProgram, HttpStatus.CREATED);
 	}
 	
