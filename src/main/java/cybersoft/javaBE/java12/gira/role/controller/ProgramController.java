@@ -38,7 +38,7 @@ public class ProgramController {
 	@PostMapping
 	public Object saveProgram(@Valid @RequestBody CreateProgramDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
-			return new ResponseEntity<>(errors.getAllErrors(),HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
 		}
 		Program addedProgram = service.addNewProgram(dto);
 		

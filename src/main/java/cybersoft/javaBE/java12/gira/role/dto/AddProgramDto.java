@@ -10,6 +10,8 @@ public class AddProgramDto {
 	@NotNull
 	@Min(value = 1)
 	private Long ProgramId;
+	
+	/*getter setter*/
 	public Long getRoleId() {
 		return RoleId;
 	}
