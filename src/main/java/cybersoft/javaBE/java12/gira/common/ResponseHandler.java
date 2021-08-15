@@ -21,6 +21,16 @@ public class ResponseHandler {
 		
 		return new ResponseEntity<Object>(map,status);
 	}
+	public static Object getResponse(HttpStatus status) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("content", "");
+		map.put("errors", "");
+		map.put("timestamp",LocalDateTime.now());
+		map.put("status", status.value());
+		
+		return new ResponseEntity<Object>(map,status);
+	}
 	public static ResponseEntity<Object> getResponse(BindingResult errors, HttpStatus status){
 		Map<String, Object> map = new HashMap<>();
 		map.put("content", "");
@@ -30,4 +40,5 @@ public class ResponseHandler {
 		
 		return new ResponseEntity<Object>(map, status);
 	}
+	
 }

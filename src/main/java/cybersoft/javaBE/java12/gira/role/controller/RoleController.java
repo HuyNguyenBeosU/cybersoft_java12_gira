@@ -41,7 +41,7 @@ public class RoleController {
 	@PostMapping
 	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
-			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
 		}
 		Role addedRole = service.addNewRole(dto);
 		
