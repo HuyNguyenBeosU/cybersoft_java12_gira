@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +40,7 @@ public class RoleController {
 	@PostMapping
 	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
-			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
 		}
 		Role addedRole = service.addNewRole(dto);
 		

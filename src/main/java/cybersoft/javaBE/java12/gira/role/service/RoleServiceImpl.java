@@ -46,4 +46,15 @@ public class RoleServiceImpl implements RoleService {
 		return repository.save(role);
 	}
 
+	@Override
+	public boolean isTakenName(String roleName) {
+		return repository.countByName(roleName) >=1;
+		
+	}
+
+	@Override
+	public boolean isExistedId(Long roleId) {	
+		return repository.existsById(roleId);
+	}
+
 }
