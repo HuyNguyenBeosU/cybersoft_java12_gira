@@ -1,0 +1,8 @@
+package cybersoft.javaBE.java12.gira.role.dto;
+
+public interface GroupDto {
+	// projection
+	public Long getId();
+	public String getName();
+	public String getDescription();
+}
